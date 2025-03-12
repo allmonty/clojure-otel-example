@@ -1,0 +1,20 @@
+# Create a compose file with jaeger all in one image
+version: '3'
+
+services:
+  jaeger:
+    image: jaegertracing/all-in-one:1.67.0
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+      - "14268:14268"
+      - "14250:14250"
+      - "9411:9411"
+      - "16686:16686"
+    environment:
+      - LOG_LEVEL=debug
+    networks:
+      - otel-example
+
+networks:
+  otel-example:
